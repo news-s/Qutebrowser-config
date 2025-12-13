@@ -2,6 +2,7 @@ config.load_autoconfig(False)
 
 path_to_start_page = "path"
 
+
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
 c.statusbar.show = "in-mode"
@@ -16,11 +17,12 @@ c.url.searchengines = {
     "yt": "https://www.youtube.com/results?search_query={}",
     "git": "https://github.com/search?q={}",
     "stack": "https://stackoverflow.com/search?q={}",
-    "lol": "u.gg/lol/champions/{}/build",
+    #since im not playing lol anymore "lol": "u.gg/lol/champions/{}/build",
+    "arch": "https://wiki.archlinux.org/?search={}", #because of this
 }
 
-config.bind('J', 'tab-prev')
-config.bind('K', 'tab-next')
+config.bind('j', 'tab-prev')
+config.bind('k', 'tab-next')
 config.bind('X', 'undo')
 config.bind('<Ctrl-t>', f'open -t {path_to_start_page}')
 
