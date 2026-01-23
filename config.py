@@ -1,7 +1,6 @@
 config.load_autoconfig(False)
 
-path_to_start_page = "path"
-
+from creds import path_to_start_page, exclude_sites
 
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
@@ -9,8 +8,11 @@ c.statusbar.show = "in-mode"
 c.tabs.show = "switching"
 c.tabs.position = "top"
 c.tabs.favicons.show = "pinned"
-c.url.start_pages = path_to_start_page
+c.url.start_pages = [path_to_start_page]
 
+#exclude darkmode
+for site in exclude_sites:
+    config.set('colors.webpage.darkmode.enabled', False, site)
 
 c.url.searchengines = {
     "DEFAULT": "https://google.com/search?q={}",
@@ -24,6 +26,8 @@ c.url.searchengines = {
 config.bind('j', 'tab-prev')
 config.bind('k', 'tab-next')
 config.bind('X', 'undo')
+config.bind('h', 'back')
+config.bind('e', ':cmd-set-text :open {url}') # edit url
 config.bind('<Ctrl-t>', f'open -t {path_to_start_page}')
 
 c.aliases['chat'] = 'open -t https://chat.openai.com'
@@ -33,9 +37,11 @@ c.content.autoplay = False
 c.content.cookies.accept = "no-3rdparty"
 c.content.geolocation = False
 c.content.notifications.enabled = False
+# for tailwind in my start page
+c.content.local_content_can_access_remote_urls = True
 
 c.content.blocking.enabled = True
-c.content.blocking.method = "both"
+c.content.blocking.method = "auto"
 c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easylist.txt",
     "https://easylist.to/easylist/easyprivacy.txt",
