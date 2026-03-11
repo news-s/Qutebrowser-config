@@ -9,28 +9,34 @@ c.tabs.show = "switching"
 c.tabs.position = "top"
 c.tabs.favicons.show = "pinned"
 c.url.start_pages = [path_to_start_page]
+c.downloads.remove_finished = 1000  # gets rid of this ugly download bar
+c.auto_save.session = True
 
-#exclude darkmode
+# exclude darkmode
 for site in exclude_sites:
-    config.set('colors.webpage.darkmode.enabled', False, site)
+    config.set("colors.webpage.darkmode.enabled", False, site)
 
 c.url.searchengines = {
     "DEFAULT": "https://google.com/search?q={}",
     "yt": "https://www.youtube.com/results?search_query={}",
     "git": "https://github.com/search?q={}",
     "stack": "https://stackoverflow.com/search?q={}",
-    #since im not playing lol anymore "lol": "u.gg/lol/champions/{}/build",
-    "arch": "https://wiki.archlinux.org/?search={}", #because of this
+    # since im not playing lol anymore "lol": "u.gg/lol/champions/{}/build",
+    "arch": "https://wiki.archlinux.org/?search={}",  # because of this
 }
 
-config.bind('j', 'tab-prev')
-config.bind('k', 'tab-next')
-config.bind('X', 'undo')
-config.bind('h', 'back')
-config.bind('e', ':cmd-set-text :open {url}') # edit url
-config.bind('<Ctrl-t>', f'open -t {path_to_start_page}')
+config.bind("j", "tab-prev")
+config.bind("k", "tab-next")
+config.bind("X", "undo")
+config.bind("h", "back")
+config.bind("e", ":cmd-set-text :open {url}")  # edit url
+config.bind("<Ctrl-t>", f"open -t {path_to_start_page}")
+config.bind("o", ":cmd-set-text --space :open -t")
+config.bind("O", ":cmd-set-text --space :open")
 
-c.aliases['chat'] = 'open -t https://chat.openai.com'
+c.aliases["chat"] = "open -t https://chat.openai.com"
+c.aliases["kloc"] = "open -t https://www.chess.com/play/online/doubles-bughouse"
+c.aliases["conf"] = "config-source"
 
 c.content.javascript.enabled = True
 c.content.autoplay = False
@@ -45,7 +51,7 @@ c.content.blocking.method = "auto"
 c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easylist.txt",
     "https://easylist.to/easylist/easyprivacy.txt",
-    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt"
+    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
 ]
 
 c.editor.command = ["code", "{}"]
